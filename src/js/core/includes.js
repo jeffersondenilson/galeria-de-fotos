@@ -1,6 +1,8 @@
 import $ from 'jquery';
 
 const onLoadHtmlSuccessCallbacks = [];
+// para deploy no github
+const urlPrefix = process.env.NODE_ENV ? '' : '/projeto-galeria';
 
 export function onLoadHtmlSuccess(callback){
 	if(!onLoadHtmlSuccessCallbacks.includes(callback)){
@@ -12,7 +14,7 @@ export function onLoadHtmlSuccess(callback){
 function loadIncludes(parent){
 	if (!parent) parent = 'body';
 	$(parent).find('[wm-include]').each((i, e)=>{
-		const url = $(e).attr('wm-include');
+		const url = urlPrefix + $(e).attr('wm-include');
 		$.ajax({
 			url,
 			success(data){
