@@ -2,7 +2,8 @@ import $ from 'jquery';
 
 const onLoadHtmlSuccessCallbacks = [];
 // para deploy no github
-const urlPrefix = process.env.NODE_ENV ? '' : '/projeto-galeria';
+const modoDev = process.env.NODE_ENV !== 'production';
+const urlPrefix = modoDev ? '' : '/galeria-de-fotos';
 
 export function onLoadHtmlSuccess(callback){
 	if(!onLoadHtmlSuccessCallbacks.includes(callback)){
@@ -18,6 +19,10 @@ function loadIncludes(parent){
 		$.ajax({
 			url,
 			success(data){
+				// substitui src das imagens em produção
+				if(!modoDev && data.includes('src="/imgs')){
+					data = data.replaceAll('src="/imgs', `src="${urlPrefix}/imgs`);
+				}
 				$(e).html(data);// insere html do wm-include
 				$(e).removeAttr('wm-include');// remove p/ não ser encontrado novamente
 				// executa callbacks quando o html é carregado

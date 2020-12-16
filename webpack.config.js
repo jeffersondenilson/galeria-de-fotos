@@ -4,9 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-// const ASSET_PATH = process.env.ASSET_PATH || '/'
-const ASSET_PATH = modoDev ? '/' : '/projeto-galeria/'
-
+const ASSET_PATH = modoDev ? '/' : '/galeria-de-fotos/'
 
 module.exports = {
     mode: modoDev ? 'development' : 'production',
