@@ -21,3 +21,9 @@ npm start
 ```bash
 npm run build
 ```
+
+* **Deploy no Github Pages:**
+```bash
+npm run build
+npm run deploy
+```
